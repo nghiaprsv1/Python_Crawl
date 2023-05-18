@@ -1,0 +1,57 @@
+{% extends "crawl/base.html"%}
+{%load static%}
+{%block title%}<title>Trang Chủ</title>{%endblock title%}
+{%block banner_slitder%}
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="https://salt.tikicdn.com/ts/brickv2og/8e/8c/ba/9088c2ccc8be2342efd1857a950f5447.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Điện thoại giá rẻ</h5>
+          <p>Siêu giảm giá vãi car lòn</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="https://salt.tikicdn.com/ts/brickv2og/8b/f1/57/75dcd2fb5468c91bb32e5f05ee5c1010.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Điện thoại giá rẻ</h5>
+          <p>RẺ thật</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://salt.tikicdn.com/ts/brickv2og/ff/26/19/e52dccf8aa8a93178c987edf27eda27f.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Máy Tính Bảng</h5>
+          <p>Siêu mượt</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+{%endblock banner_slitder%}
+{%block maincontent%}
+ <div class="row" style="width:100%;overflow-x: hidden;">
+    {% for product in products %}
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{{product.image}}" width="50%" height="50%" frameBorder=1>    
+        <div class="box-element product">
+            <h6><strong class="text-overflow">{{product.name}}</strong></h6>
+            <hr>
+            <a class="btn btn-outline-secondary add-btn update-cart" href="{%url 'category' product.pk%}">Xem</a>
+            <h3 style="display: inline-block; float: right"><strong>{{product.price}}</strong></h3>
+        </div> 
+    </div>
+    {%endfor%}
+{%endblock maincontent%}

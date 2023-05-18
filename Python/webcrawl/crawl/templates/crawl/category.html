@@ -1,0 +1,43 @@
+{% extends "crawl/base.html"%}
+{%load static%}
+{%block title%}<title>{{product.name}}</title>{%endblock title%}
+{%block maincontent%}
+  <div class="container" >
+    {% comment %} {% for product in product_click %} {% endcomment %}
+    <div class="row flex justify-content-between">
+        <div class="img2 col-lg-5 mt-5">
+            <img src="{{product.image}}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75" alt="">
+        </div>
+        <div class="productdetail col-lg-5">
+            <h1 style="font-family:Georgia; font-size: 30px">{{product.name}}</h1>
+            {% if product.discount_rate > 0 %}
+                {% if product.discount_rate  < 30 %}
+                    <h5>{{product.price }}đ <span style="color:red">-{{product.discount_rate}}%</span></h5>
+                    <small clas="text-decoration-line-through text-muted fs-5">
+                    <del><small>{{ product.selling_price}}đ</small></del>
+                {%else %}
+                    <h5>{{product.price }}đ <span style="color:red">Giảm Sốc-{{product.discount_rate}}%</span></h5>
+                    <small clas="text-decoration-line-through text-muted fs-5">
+                    <del><small>{{ product.selling_price}}đ</small></del>
+                {% endif %}
+            {% endif %}
+            <br><br><h4>Thương hiệu</h4>
+            <ul class="fs-5" style="font-family: Rajdhani;overflow-x: hidden;">
+                <li>{{product.brand_name}}</li>
+            </ul>
+            <br><br><h4>Cửa hàng</h4>
+            <ul class="fs-5" style="font-family: Rajdhani;overflow-x: hidden;">
+                <li>{{product.current_seller}}</li>
+            </ul>
+            <div class="buttons row flex" href="{% url 'todo' %}"style="font-family: Rajdhani;">
+                <button type="summit" class="d-grid gap-2 btn1 btn
+                 btn-danger p-1 m-1 btn-lg text-decoration-none text-white" >
+                 Mua Sản Phẩm
+                </button>
+            </div>
+        </div>
+    </div>
+  </div>
+    {% comment %} {%endfor%} {% endcomment %}
+
+{%endblock maincontent%}

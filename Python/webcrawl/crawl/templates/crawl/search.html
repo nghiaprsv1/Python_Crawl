@@ -1,0 +1,43 @@
+{% extends "crawl/base.html"%}
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="{%static 'app/css/style.css'%}" rel='stylesheet'/>
+    <link href="{%static 'app/css/owl.carousel.min.css'%}" rel='stylesheet'/>
+    <link href="{%static 'app/css/all.min.css'%}" rel='stylesheet'/>
+    <link href="{%static 'app/css/main.css'%}" rel='stylesheet'/>
+    <!--js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <script href="{%static 'app/css/myscript.js'%}" ></script>
+    <script href="{%static 'app/css/owl.carousel.min.js'%}" ></script>
+    <script href="{%static 'app/css/all.min.js'%}" ></script>
+    <title>WebCrawl</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    {%block search%}
+    <h5> Result  search for {{searched}}</h5>
+    <div class="row" style="width:100%">
+        {% for product in keys %}
+        <div class="col-lg-4">
+          <img class="thumbnail" src="{{product.image}}" width="200" height="200" frameBorder=1>
+          {% comment %} <img class="thumbnail" src="https://salt.tikicdn.com/cache/280x280/ts/product/c2/95/b0/405e3bc7267cd545c76fd6eb93fa6045.png"> {% endcomment %}
+          <div class="box-element product">
+              <h6><strong>{{product.name}}</strong></h6>
+              <hr>
+              {% comment %} <button class="btn btn-outline-secondary add-btn">Xem Thông Tin</button> {% endcomment %}
+              <a class="btn btn-outline-secondary add-btn update-cart" href="{%url 'category' product.pk%}">Xem</a>
+              <h3 style="display: inline-block; float: right"><strong>{{product.price}}</strong></h3>
+          </div>
+      </div>
+        {%endfor%}
+    {%endblock search%}
+  </body>
+</html>
