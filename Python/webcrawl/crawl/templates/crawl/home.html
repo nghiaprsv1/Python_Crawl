@@ -1,7 +1,7 @@
 {% extends "crawl/base.html"%}
 {%load static%}
 {%block title%}<title>Trang Chủ</title>{%endblock title%}
-{%block banner_slitder%}
+{% comment %} {%block banner_slitder%}
 <div id="carouselExampleDark" class="carousel carousel-dark slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -40,7 +40,7 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-{%endblock banner_slitder%}
+{%endblock banner_slitder%} {% endcomment %}
 {%block maincontent%}
  <div class="row" style="width:100%;overflow-x: hidden;">
     {% for product in products %}
@@ -49,7 +49,7 @@
         <div class="box-element product">
             <h6><strong class="text-overflow">{{product.name}}</strong></h6>
             <hr>
-            <a class="btn btn-outline-secondary add-btn update-cart" href="{%url 'category' product.pk%}">Xem</a>
+            <a class="btn btn-outline-success add-btn update-cart" href="{%url 'category' product.pk%}">Xem</a>
             <h3 style="display: inline-block; float: right"><strong>{{product.price}}</strong></h3>
         </div> 
     </div>

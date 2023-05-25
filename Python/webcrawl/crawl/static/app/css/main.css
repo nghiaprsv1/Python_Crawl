@@ -38,7 +38,7 @@ h1,h2,h3,h4,h5,h6{
 #cart-total{
 	display: block;
 	text-align: center;
-	color:#fff;
+	color:#000;
 	background-color: red;
 	width: 20px;
 	height: 25px;
@@ -50,8 +50,51 @@ h1,h2,h3,h4,h5,h6{
 	margin-top: 10px;
 }
 
-.btn{
-	border-radius: 0;
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: transparent;
+    color: #000;
+    padding: 12px 48px;
+    border-radius: 50px;
+    cursor: pointer;
+    min-width: 120px;
+    transition: opacity 0.2s ease;
+    user-select: none;
+}
+  
+  /* Modifier */
+  .btn--size-l {
+    padding: 16px 56px;
+}
+  
+.btn--size-s {
+    padding: 8px 32px;
+}
+  
+.btn:hover {
+    opacity: 1;
+}
+  
+.btn + .btn {
+    margin-left: 16px;
+  }
+  
+  .btn--success {
+    background-color: #71be34;
+}
+  
+.btn--warn {
+    background-color: #ffb702;
+}
+  
+.btn--danger {
+    background-color: #ff623d;
+}
+  
+.btn--disabled, .btn[disabled] {
+    opacity: 0.5 !important;
+    pointer-events: none;
 }
 
 .row-image{

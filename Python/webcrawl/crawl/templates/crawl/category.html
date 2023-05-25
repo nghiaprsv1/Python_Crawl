@@ -29,9 +29,9 @@
             <ul class="fs-5" style="font-family: Rajdhani;overflow-x: hidden;">
                 <li>{{product.current_seller}}</li>
             </ul>
-            <div class="buttons row flex" href="{% url 'todo' %}"style="font-family: Rajdhani;">
+            <div class="buttons row flex" href="{% url 'todo' product.pk%}"style="font-family: Rajdhani;">
                 <button type="summit" class="d-grid gap-2 btn1 btn
-                 btn-danger p-1 m-1 btn-lg text-decoration-none text-white" >
+                 btn-danger p-1 m-1 btn-lg text-decoration-none text-black" >
                  Mua Sản Phẩm
                 </button>
             </div>

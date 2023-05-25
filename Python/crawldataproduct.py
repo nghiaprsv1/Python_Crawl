@@ -49,7 +49,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
     'Accept': 'application/json, text/plain, */*',
     'Accept-Language': 'vi,vi-VN;q=0.9,en-US;q=0.8,en;q=0.7',
-    'Referer': 'https://tiki.vn/dien-thoai-samsung-galaxy-m31-128gb-6gb-hang-chinh-hang-p58259141.html?src=category-page-1789&2hi=0',
+    'Referer': 'https://tiki.vn/combo-3-qua-n-lo-t-nam-boxer-so-i-cotton-organic-me-m-mi-n-thoa-ng-ma-t-co-gia-n-4-chie-u-mrm-manlywear-tang-doi-tat-nam-cao-cap-giao-ngau-nhien-p52184516.html?itm_campaign=tiki-reco_UNK_DT_UNK_UNK_tiki-listing_UNK_p-category-mpid-listing-v1_202305200600_MD_batched_PID.52184520&itm_medium=CPC&itm_source=tiki-reco&spid=52184520',
     'x-guest-token': '7jeABiknxS65Tmd0byNIcFrKX3szYaDH',
     'Connection': 'keep-alive',
     'TE': 'Trailers',
@@ -57,7 +57,7 @@ headers = {
 
 params = (
     ('platform', 'web'),
-    ('spid', 198641666)
+    ('spid', 52184520)
     #('include', 'tag,images,gallery,promotions,badges,stock_item,variants,product_links,discount_tag,ranks,breadcrumbs,top_features,cta_desktop'),
 )
 # params1 = {
@@ -88,17 +88,13 @@ def parser_product(json):
     d['name'] = json.get('name')
     d['price'] = json.get('price')
     d['selling_price'] = json.get('original_price')
-    d['rating_average'] = 0
-    d['rating_average'] = json.get('rating_average')
-    d['quantitysold'] = 0
-    d['quantitysold']= json.get('quantity_sold').get('value')
     d['brand_name'] = json.get('brand').get('name')
     d['discount_rate'] = json.get('discount_rate')
     d['current_seller'] = json.get('current_seller').get('name')
+    d['quantity_sold'] = json.get('quantity_sold').get('value')
     d['short_url'] = json.get('short_url')
     d['image'] = json.get('thumbnail_url')
     return d
-
 
 df_id = pd.read_csv('product_id_ncds.csv')
 p_ids = df_id.id.to_list()
@@ -108,8 +104,10 @@ for pid in tqdm(p_ids, total=len(p_ids)):
         response = requests.get('https://tiki.vn/api/v2/products/{}'.format(pid), headers=headers, params=params, cookies=cookies)
         if response.status_code == 200:
             print('Crawl data {} success !!!'.format(pid))
+            # result.append(parser_product(response.json()))
+            # dk=result.append(parser_product_have_rate(response.json()))
             result.append(parser_product(response.json()))
-        time.sleep(2)
+        # time.sleep(2)
 
     except requests.exceptions.RequestException as err:
             print("Yêu cầu gặp lỗi:", err)
@@ -121,13 +119,14 @@ for pid in tqdm(p_ids, total=len(p_ids)):
             print("Lỗi không xác định:", err)
     # time.sleep(random.randrange(1, 2))
 df_product = pd.DataFrame(result)
-df_product.to_csv('crawled_data_ncds1.csv', index=False)
+df_product.to_csv('datathoitrang.csv', index=False)
+
 # import csv to sql server
 # df1=pd.read_csv('crawled_data_ncds.csv')
 
 # df1.columns = df1.columns.str.strip()
 
-# connection = sqlite3.connect('C:\\Users\\nghia\\OneDrive\\Máy tính\\Python\\webcrawl\\db5.sqlite3')
+# connection = sqlite3.connect('C:\\Users\\nghia\\Python_Crawl\\Python\\webcrawl\\db.sqlite3')
 
 # df1.to_sql('crawl_product',connection, if_exists='replace')
 
