@@ -9,13 +9,13 @@ import time
 import random
 import sqlite3
 from tqdm import tqdm
-def drawchart():
-    datas = pd.read_csv("datathoitrang.csv")
+def drawchartcrawl(file_path):
+    datas = pd.read_csv(file_path)
     datas.drop(['short_url','image'],axis=1, inplace=True)
     data_brand= datas['brand_name'].value_counts().to_frame()
     data_brand.reset_index(inplace=True)
     data_brand.columns = ['brand_name','count']
-    plt.figure(figsize=(13,10))
+    plt.figure(figsize=(20,20))
     sns.barplot(x='brand_name', y="count",data = data_brand)
     plt.xlabel("Thương hiệu")
     plt.ylabel("Số lượng")
@@ -35,7 +35,7 @@ def drawchart():
     plt.plot()
     plt.savefig('C://Users//nghia//Python_Crawl//Python//webcrawl//crawl//static//app//images//dothishop.png')
 
-    datas = pd.read_csv("datathoitrang.csv")
+    datas = pd.read_csv(file_path)
     quantity_value = datas.groupby('brand_name').sum()['quantity_sold']
     quantity_value.min()
     quantity_value.reset_index(inplace=False)
@@ -50,7 +50,7 @@ def drawchart():
     plt.plot()
     plt.savefig('C://Users//nghia//Python_Crawl//Python//webcrawl//crawl//static//app//images//dothibrandsold.png')
 
-    data3 = pd.read_csv("datathoitrang.csv")
+    data3 = pd.read_csv(file_path)
     quantity_value = data3.groupby('current_seller').sum()['quantity_sold']
     quantity_value.reset_index(inplace=False)
     quantity_value = quantity_value.reset_index().rename(columns={'quantity_sold': 'current_seller', 'current_seller': 'quantity_sold'})

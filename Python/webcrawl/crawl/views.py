@@ -75,6 +75,6 @@ def import_view(request):
     if request.method == 'POST':
         file = request.FILES['file']
         importdb.import_data(file)
-        drawchartcrawl.drawchart(file)
+        drawchartcrawl.drawchartcrawl(file)
         messages.success(request, 'Upload File Thành Công')
     return render(request,"crawl/home.html")
